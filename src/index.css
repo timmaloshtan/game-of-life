@@ -1,13 +1,69 @@
-body {
+* {
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.App {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 800px;
+  row-gap: 15px;
+}
+
+.Controls {
+  padding: 15px;
+  border: 1px solid black;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.slider-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.slider {
+  min-width: 250px;
+}
+
+.board {
+  margin: auto;
+  border-collapse: collapse;
+}
+
+.board * {
+  margin: 0;
+  padding: 0;
+}
+
+.board-row {
+  border-style: none;
+}
+
+.board-cell {
+  border: 1px solid black;
+}
+
+.cell-content {
+  min-width: 15px;
+  min-height: 15px;
+}
+
+.cell-content.alive {
+  background-color: green;
 }

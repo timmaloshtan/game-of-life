@@ -2,16 +2,16 @@ import React from 'react';
 import { SizeContext } from '../Contexts';
 
 const Controls = () => {
-  const { height, width, onSizeChange, populate } = React.useContext(SizeContext);
+  const { height, width, onResize, populateBoard, tickOnce } = React.useContext(SizeContext);
   const changeHandler = React.useCallback(
     (event) => {
-      onSizeChange({
+      onResize({
         height,
         width,
         [event.target.id]: event.target.value,
       });
     },
-    [height, width, onSizeChange],
+    [height, width, onResize],
   );
   return (
     <div className="Controls">
@@ -39,10 +39,14 @@ const Controls = () => {
           onChange={changeHandler}
         />{' '}
       </div>{' '}
-      <div>
-        <button className="btn" onClick={populate}>
+      <div className="actions">
+        <button className="btn actions__btn" onClick={populateBoard}>
           Populate randomly
         </button>
+        <button className="btn actions__btn" onClick={tickOnce}>
+          Tick
+        </button>
+        <button className="btn actions__btn">Play</button>
       </div>
     </div>
   );

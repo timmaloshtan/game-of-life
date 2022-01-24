@@ -67,3 +67,15 @@ code {
 .cell-content.alive {
   background-color: green;
 }
+
+.actions {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  column-gap: 10px;
+}
+
+.actions__btn {
+  flex-grow: 1;
+  width: 100%;
+}

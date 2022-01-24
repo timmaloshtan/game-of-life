@@ -5,7 +5,7 @@ import Board from './Board';
 import { useGameReducer } from './useGameReducer';
 
 function App() {
-  const [{ board }, dispatch] = useGameReducer();
+  const [{ board, isPlaying }, dispatch] = useGameReducer();
 
   const onResize = React.useCallback(
     ({ height, width }) => {
@@ -37,6 +37,27 @@ function App() {
     dispatch({ type: 'TICK' });
   }, [dispatch]);
 
+  const playPause = React.useCallback(() => {
+    dispatch({ type: 'TOGGLE_PLAY' });
+  }, [dispatch]);
+
+  React.useEffect(() => {
+    if (isPlaying) {
+      let timer;
+      const handler = () => {
+        tickOnce();
+
+        timer = setTimeout(handler, 500);
+      };
+
+      timer = setTimeout(handler, 500);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [tickOnce, isPlaying]);
+
   return (
     <div className="App">
       <SizeContext.Provider
@@ -46,6 +67,8 @@ function App() {
           onResize,
           populateBoard,
           tickOnce,
+          isPlaying,
+          playPause,
         }}>
         <Controls />
       </SizeContext.Provider>

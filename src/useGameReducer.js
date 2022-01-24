@@ -1,13 +1,15 @@
 import React from 'react';
 
-const init = () => {
-  const board = new Array(25);
+const DEFAULT_SIZE = 10;
 
-  for (let i = 0; i < 25; i++) {
-    board[i] = new Array(25).fill(0);
+const init = () => {
+  const board = new Array(DEFAULT_SIZE);
+
+  for (let i = 0; i < DEFAULT_SIZE; i++) {
+    board[i] = new Array(DEFAULT_SIZE).fill(0);
   }
 
-  return { board };
+  return { board, isPlaying: false };
 };
 
 const toggleCell = (board, i, j) => {
@@ -111,9 +113,6 @@ const gameReducer = (state, action) => {
           const isAlive = previousBoard[i][j];
           const aliveNeighbours = countAliveNeighbours(previousBoard, i, j);
 
-          console.log('isAlive :>> ', isAlive);
-          console.log('aliveNeighbours :>> ', aliveNeighbours);
-
           if (isAlive && aliveNeighbours < 2) {
             board = toggleCell(board, i, j);
           }
@@ -132,6 +131,11 @@ const gameReducer = (state, action) => {
       return {
         ...state,
         board,
+      };
+    case 'TOGGLE_PLAY':
+      return {
+        ...state,
+        isPlaying: !state.isPlaying,
       };
     default:
       return state;
